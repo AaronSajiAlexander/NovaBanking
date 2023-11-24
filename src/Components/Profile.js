@@ -20,7 +20,7 @@ const Profile = () => {
     // Fetch balance using the URL
     const fetchBalance = async () => {
       try {
-        const apiUrl = `http://localhost:8080/v1/balance/${storedAccID}`;
+        const apiUrl = `https://naan-mudhalvan.onrender.com/v1/balance/${storedAccID}`;
         const response = await fetch(apiUrl);
 
         if (response.ok) {

@@ -29,7 +29,7 @@ const Transfer = () => {
     // Fetch account balance
     const fetchAccountBalance = async () => {
       try {
-        const balanceUrl = `http://localhost:8080/v1/balance/${accID}`;
+        const balanceUrl = `https://naan-mudhalvan.onrender.com/v1/balance/${accID}`;
         const balanceResponse = await fetch(balanceUrl);
         if (balanceResponse.ok) {
           const balanceData = await balanceResponse.json();
@@ -47,7 +47,7 @@ const Transfer = () => {
     // Fetch beneficiary data
     const fetchBeneficiaries = async () => {
       try {
-        const apiUrl = `http://localhost:8080/v1/beneficiaries/${accID}`;
+        const apiUrl = `https://naan-mudhalvan.onrender.com/v1/beneficiaries/${accID}`;
         const response = await fetch(apiUrl);
         if (response.ok) {
           const data = await response.json();
@@ -83,7 +83,7 @@ const Transfer = () => {
 
 const handleTransfer = async () => {
     try {
-      const apiUrl = `http://localhost:8080/v1/transfer/${accID}`;
+      const apiUrl = `https://naan-mudhalvan.onrender.com/v1/transfer/${accID}`;
       const response = await fetch(apiUrl, {
         method: 'POST',
         headers: {

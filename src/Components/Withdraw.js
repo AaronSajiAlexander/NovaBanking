@@ -16,7 +16,7 @@ const Withdraw = () => {
       setAccID(storedAccID);
       const fetchAccountBalance = async () => {
         try {
-          const balanceUrl = `http://localhost:8080/v1/balance/${storedAccID}`;
+          const balanceUrl = `https://naan-mudhalvan.onrender.com/v1/balance/${storedAccID}`;
           const balanceResponse = await fetch(balanceUrl);
           if (balanceResponse.ok) {
             const balanceData = await balanceResponse.json();
@@ -44,7 +44,7 @@ const Withdraw = () => {
       setErrorMessage('Insufficient funds');
     } else {
       try {
-        const apiUrl = `http://localhost:8080/v1/${accID}/WITHDRAW/${withdrawalAmount}`;
+        const apiUrl = `https://naan-mudhalvan.onrender.com/v1/${accID}/WITHDRAW/${withdrawalAmount}`;
         const response = await fetch(apiUrl, {
           method: 'GET',
           headers: {

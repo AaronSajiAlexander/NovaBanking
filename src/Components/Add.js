@@ -14,7 +14,7 @@ const AddBeneficiary = () => {
 
   const handleAddBeneficiary = async () => {
     try {
-      const apiUrl = 'http://localhost:8080/v1/add';
+      const apiUrl = 'https://naan-mudhalvan.onrender.com/v1/add';
       const response = await fetch(apiUrl, {
         method: 'POST',
         headers: {

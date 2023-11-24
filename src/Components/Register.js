@@ -28,7 +28,7 @@ const Register = () => {
   };
 
   const handleRegister = async () => {
-    const apiUrl = 'http://localhost:8080/v1/signup';  
+    const apiUrl = 'https://naan-mudhalvan.onrender.com/v1/signup';  
   
     const requestBody = {
       name,

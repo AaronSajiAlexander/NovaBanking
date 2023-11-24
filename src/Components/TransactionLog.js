@@ -26,7 +26,7 @@ const TransactionLog = () => {
 
   const fetchUserTransactions = async () => {
     try {
-      const apiUrl = `http://localhost:8080/v1/transactions/${accountID}`;
+      const apiUrl = `https://naan-mudhalvan.onrender.com/v1/transactions/${accountID}`;
       const response = await fetch(apiUrl);
       const data = await response.json();
 

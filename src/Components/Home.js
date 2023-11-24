@@ -21,7 +21,7 @@ const Home = () => {
     } else {
       const fetchAccountBalance = async () => {
         try {
-          const apiUrl = `http://localhost:8080/v1/balance/${accID}`;
+          const apiUrl = `https://naan-mudhalvan.onrender.com/v1/balance/${accID}`;
           const response = await fetch(apiUrl);
           if (response.ok) {
             const data = await response.json();
@@ -36,7 +36,7 @@ const Home = () => {
 
       const fetchUserTransactions = async () => {
         try {
-          const apiUrl = `http://localhost:8080/v1/transactions/${accID}`;
+          const apiUrl = `https://naan-mudhalvan.onrender.com/v1/transactions/${accID}`;
           const response = await fetch(apiUrl);
           const data = await response.json();
 
