@@ -11,6 +11,7 @@ const AddBeneficiary = () => {
   const [successMessage, setSuccessMessage] = useState('');
   const [errorMessage, setErrorMessage] = useState('');
   const accountIDUser = sessionStorage.getItem('accID');
+  var response;
 
   const handleAddBeneficiary = async () => {
     try {
@@ -23,7 +24,7 @@ const AddBeneficiary = () => {
       }
       else{
       const apiUrl = 'https://naan-mudhalvan.onrender.com/v1/add';
-      const response = await fetch(apiUrl, {
+        response = await fetch(apiUrl, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -68,6 +69,7 @@ const AddBeneficiary = () => {
           onChange={(e) => setAccountIDBeneficiary(e.target.value)}
           fullWidth
           style={{ marginBottom: 10 }}
+          required
         />
         <TextField
           label="Beneficiary Name"
@@ -75,6 +77,7 @@ const AddBeneficiary = () => {
           onChange={(e) => setName(e.target.value)}
           fullWidth
           style={{ marginBottom: 10 }}
+          required
         />
         <TextField
           label="IFSC Code"
@@ -82,6 +85,7 @@ const AddBeneficiary = () => {
           onChange={(e) => setIfscCode(e.target.value)}
           fullWidth
           style={{ marginBottom: 20 }}
+          required
         />
         {errorMessage && (
           <Typography variant="body2" color="error" className={classes.errorMessage}>
