@@ -46,6 +46,7 @@ const AddBeneficiary = () => {
       } else {
         const errorData = await response.json();
         setSuccessMessage('');
+        alert("Beneficiaries can be added only if they are registered with the bank. Some registered Beneficiaries are SBI0001, SBI0002, SBI0007, etc.");
         setErrorMessage(`Failed to add beneficiary. Error: ${errorData.error}`);
       }
     } catch (error) {
