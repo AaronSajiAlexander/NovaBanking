@@ -14,6 +14,14 @@ const AddBeneficiary = () => {
 
   const handleAddBeneficiary = async () => {
     try {
+      if(accountIDUser === accountIDBeneficiary){
+        setErrorMessage('Cannot add self as Beneficiary');
+        setErrorMessage('');
+        setAccountIDBeneficiary('');
+        setName('');
+        setIfscCode('');
+      }
+      else{
       const apiUrl = 'https://naan-mudhalvan.onrender.com/v1/add';
       const response = await fetch(apiUrl, {
         method: 'POST',
@@ -27,6 +35,7 @@ const AddBeneficiary = () => {
           ifscCode,
         }),
       });
+      }
 
       if (response.ok) {
         setSuccessMessage('Beneficiary added successfully!');
