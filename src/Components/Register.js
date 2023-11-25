@@ -59,7 +59,7 @@ const Register = () => {
         
           const result = await response.json();
 
-          alert('Registration successful!');
+          alert('Registration successful! Check mail, even in Spam');
           emailjs.send(
             'service_xzjqmh9',
             'template_p8se0ds',

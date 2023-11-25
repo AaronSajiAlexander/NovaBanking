@@ -170,7 +170,7 @@ const Transfer = () => {
 </Select>
         <TextField
           label="Receiver Name"
-          value={receiverName}
+          value={beneficiaries.length === 1 ? beneficiaries[0].name : receiverName}
           fullWidth
           disabled
           style={{ marginBottom: 10 }}
