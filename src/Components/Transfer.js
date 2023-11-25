@@ -102,7 +102,7 @@ const Transfer = () => {
         alert('Insufficient funds for the transfer');
         return;
       }
-      if (!senderName || !receiverName || !accountID || !amount) {
+      if (!senderName || !amount) {
         setTransferResult(null);
         alert('Please fill in all fields');
         return;
