@@ -16,7 +16,7 @@ const AddBeneficiary = () => {
     let response;
     try {
       if(accountIDUser === accountIDBeneficiary){
-        setErrorMessage('Cannot add self as Beneficiary');
+        alert("Cannot Add self as Beneficiary");
         setAccountIDBeneficiary('');
         setName('');
         setIfscCode('');
