@@ -11,9 +11,9 @@ const AddBeneficiary = () => {
   const [successMessage, setSuccessMessage] = useState('');
   const [errorMessage, setErrorMessage] = useState('');
   const accountIDUser = sessionStorage.getItem('accID');
-  var response;
 
   const handleAddBeneficiary = async () => {
+    let response;
     try {
       if(accountIDUser === accountIDBeneficiary){
         setErrorMessage('Cannot add self as Beneficiary');
@@ -38,7 +38,7 @@ const AddBeneficiary = () => {
       });
       }
 
-      if (response.ok) {
+      if (response && response.ok) {
         setSuccessMessage('Beneficiary added successfully!');
         setErrorMessage('');
         setAccountIDBeneficiary('');
