@@ -81,8 +81,23 @@ const Transfer = () => {
 
   // Inside the Transfer component
 
-const handleTransfer = async () => {
+  const handleTransfer = async () => {
     try {
+      if (parseFloat(amount) <= 0) {
+        setTransferResult(null);
+        setErrorMessage('Amount must be greater than zero');
+        return;
+      }
+      if (parseFloat(amount) > parseFloat(currentBalance)) {
+        setTransferResult(null);
+        setErrorMessage('Insufficient funds for the transfer');
+        return;
+      }
+      if (!senderName || !receiverName || !accountID || !amount) {
+        setTransferResult(null);
+        setErrorMessage('Please fill in all fields');
+        return;
+      }
       const apiUrl = `https://naan-mudhalvan.onrender.com/v1/transfer/${accID}`;
       const response = await fetch(apiUrl, {
         method: 'POST',
@@ -96,22 +111,14 @@ const handleTransfer = async () => {
           amount: parseFloat(amount),
         }),
       });
-  
       const statusCode = response.status;
-  
       if (statusCode === 200) {
         const result = await response.json();
         setTransferResult(result);
-  
-        // Print success message to the user
         console.log(`Transfer successful. Status Code: ${statusCode}`);
-        
-        // Manually update the current balance
         const newBalance = parseFloat(currentBalance) - parseFloat(amount);
         alert(`Transfer successful! New Balance: $${newBalance.toFixed(2)}`);
         setCurrentBalance(newBalance);
-  
-        // Reset input fields
         setAmount('');
         setSenderName('');
         setReceiverName('');

@@ -13,7 +13,7 @@ const AddBeneficiary = () => {
   const accountIDUser = sessionStorage.getItem('accID');
 
   const handleAddBeneficiary = async () => {
-    let response;
+    let Response = false;
     try {
       if(accountIDUser === accountIDBeneficiary){
         setErrorMessage('Cannot add self as Beneficiary');
@@ -21,10 +21,12 @@ const AddBeneficiary = () => {
         setAccountIDBeneficiary('');
         setName('');
         setIfscCode('');
+        Response = false;
       }
       else{
+      Response = true;
       const apiUrl = 'https://naan-mudhalvan.onrender.com/v1/add';
-        response = await fetch(apiUrl, {
+      const response = await fetch(apiUrl, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -38,7 +40,7 @@ const AddBeneficiary = () => {
       });
       }
 
-      if (response && response.ok) {
+      if (Response && response.ok) {
         setSuccessMessage('Beneficiary added successfully!');
         setErrorMessage('');
         setAccountIDBeneficiary('');
