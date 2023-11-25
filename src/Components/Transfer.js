@@ -85,17 +85,17 @@ const Transfer = () => {
     try {
       if (parseFloat(amount) <= 0) {
         setTransferResult(null);
-        setErrorMessage('Amount must be greater than zero');
+        alert('Amount must be greater than zero');
         return;
       }
       if (parseFloat(amount) > parseFloat(currentBalance)) {
         setTransferResult(null);
-        setErrorMessage('Insufficient funds for the transfer');
+        alert('Insufficient funds for the transfer');
         return;
       }
       if (!senderName || !receiverName || !accountID || !amount) {
         setTransferResult(null);
-        setErrorMessage('Please fill in all fields');
+        alert('Please fill in all fields');
         return;
       }
       const apiUrl = `https://naan-mudhalvan.onrender.com/v1/transfer/${accID}`;
