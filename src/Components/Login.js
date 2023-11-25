@@ -23,6 +23,7 @@ const Login = () => {
   // }, [isLoggedIn, navigate]);
 
   const handleLogin = async () => {
+    alert('Note: Please wait upto 3 minutes as server might be in hibernate mode and needs to switch to active mode. Thank you!');
     const apiUrl = 'https://naan-mudhalvan.onrender.com/v1/login';
   
     const requestBody = {

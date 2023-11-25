@@ -72,19 +72,12 @@ const Transfer = () => {
   };
 
   const handleReceiverChange = (event) => {
-    if (beneficiaries.length === 1) {
-      console.log("only 1 beneficiary");
-      // If there's only one beneficiary, set the receiver name directly
-      setReceiverName(beneficiaries[0].name);
-      setAccountID(beneficiaries[0].accountID_Beneficiary);
-    } else {
       // If there are multiple beneficiaries, use the existing logic
       const selectedBeneficiary = beneficiaries.find(
         (beneficiary) => beneficiary.accountID_Beneficiary === event.target.value
       );
       setReceiverName(selectedBeneficiary ? selectedBeneficiary.name : '');
       setAccountID(event.target.value);
-    }
   };
 
 
@@ -106,6 +99,12 @@ const Transfer = () => {
         setTransferResult(null);
         alert('Please fill in all fields');
         return;
+      }
+      if (beneficiaries.length === 1) {
+        console.log("only 1 beneficiary");
+        // If there's only one beneficiary, set the receiver name directly
+        setReceiverName(beneficiaries[0].name);
+        setAccountID(beneficiaries[0].accountID_Beneficiary);
       }
       const apiUrl = `https://naan-mudhalvan.onrender.com/v1/transfer/${accID}`;
       const response = await fetch(apiUrl, {
