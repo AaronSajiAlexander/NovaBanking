@@ -73,20 +73,12 @@ const Transfer = () => {
   };
 
   const handleReceiverChange = (event) => {
-      if (beneficiaries.length === 1) {
-      console.log("only 1 beneficiary");
-      // If there's only one beneficiary, set the receiver name directly
-      setReceiverName(beneficiaries[0].name);
-      setAccountID(beneficiaries[0].accountID_Beneficiary);
-      }
-      // If there are multiple beneficiaries, use the existing logic
-      const selectedBeneficiary = beneficiaries.find(
-        (beneficiary) => beneficiary.accountID_Beneficiary === event.target.value
-      );
-      setReceiverName(selectedBeneficiary ? selectedBeneficiary.name : '');
-      setAccountID(event.target.value);
+    const selectedBeneficiary = beneficiaries.find(
+      (beneficiary) => beneficiary.accountID_Beneficiary === event.target.value
+    );
+    setReceiverName(selectedBeneficiary ? selectedBeneficiary.name : '');
+    setAccountID(event.target.value);
   };
-
 
   // Inside the Transfer component
 
@@ -107,11 +99,10 @@ const Transfer = () => {
         alert('Please fill in all fields');
         return;
       }
-      if (beneficiaries.length === 1) {
-        console.log("only 1 beneficiary");
-        // If there's only one beneficiary, set the receiver name directly
-        setReceiverName(beneficiaries[0].name);
-        setAccountID(beneficiaries[0].accountID_Beneficiary);
+      if (!senderName || !receiverName || !accountID || !amount) {
+        setTransferResult(null);
+        alert('Please fill in all fields');
+        return;
       }
       const apiUrl = `https://naan-mudhalvan.onrender.com/v1/transfer/${accID}`;
       const response = await fetch(apiUrl, {
@@ -178,6 +169,7 @@ const Transfer = () => {
   ref={receiverSelectRef} 
   style={{ marginBottom: 10 }}
 >
+  <option value="">Select option</option>
   {beneficiaries.map((beneficiary) => (
     <option key={beneficiary.accountID_Beneficiary} value={beneficiary.accountID_Beneficiary}>
       {beneficiary.name} ({beneficiary.accountID_Beneficiary})
@@ -186,7 +178,7 @@ const Transfer = () => {
 </Select>
         <TextField
           label="Receiver Name"
-          value={beneficiaries.length === 1 ? beneficiaries[0].name : receiverName}
+          value={receiverName}
           fullWidth
           disabled
           style={{ marginBottom: 10 }}
@@ -198,6 +190,7 @@ const Transfer = () => {
           onChange={handleAmountChange}
           fullWidth
           style={{ marginBottom: 20 }}
+          inputProps={{ min: 0 }}
         />
         {errorMessage && <Typography variant="body2" color="error" className={classes.errorMessage}>{errorMessage}</Typography>}
         <Button variant="contained" color="primary" onClick={handleTransfer}>
