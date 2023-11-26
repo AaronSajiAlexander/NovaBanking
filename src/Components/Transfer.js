@@ -61,6 +61,7 @@ const Transfer = () => {
     };
 
     fetchBeneficiaries();
+    alert('Tip: You need atleast 1 Beneficiary added to make a Transfer');
   }, [accID]);
 
   const handleAmountChange = (event) => {
@@ -72,6 +73,12 @@ const Transfer = () => {
   };
 
   const handleReceiverChange = (event) => {
+      if (beneficiaries.length === 1) {
+      console.log("only 1 beneficiary");
+      // If there's only one beneficiary, set the receiver name directly
+      setReceiverName(beneficiaries[0].name);
+      setAccountID(beneficiaries[0].accountID_Beneficiary);
+      }
       // If there are multiple beneficiaries, use the existing logic
       const selectedBeneficiary = beneficiaries.find(
         (beneficiary) => beneficiary.accountID_Beneficiary === event.target.value
@@ -163,6 +170,7 @@ const Transfer = () => {
         <Select
   labelId="receiver-label"
   id="receiver"
+  label="Choose Beneficiary"
   value={accountID}
   onChange={handleReceiverChange}
   fullWidth
